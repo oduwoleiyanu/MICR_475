@@ -1,0 +1,10 @@
+---
+title: "Homework 1"
+output:
+  github_document: default
+  html_notebook: default
+---
+
+**Welcome to Data reproducibility class** 
+
+2 + 2
