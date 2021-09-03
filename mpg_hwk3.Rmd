@@ -1,0 +1,20 @@
+---
+title: "hw3 Notebook"
+output: github_document
+---
+
+
+
+```{r}
+library(tidyverse)
+head(mpg)
+# I want to investigate the effect of car class on their mileage
+
+ggplot(data = mpg) +
+geom_point(mapping = aes(x = displ, y = hwy, color = class))
+
+#conclusion: 2 seater cars are the outliers because they have small body sizes but large engines. Cars with larger engines and larger body like the SUV have higher higher mileage
+
+```
+
+
