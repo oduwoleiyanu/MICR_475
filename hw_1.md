@@ -1,6 +1,10 @@
-Homework 1
+Hw1 Notebook
 ================
 
-**Welcome to Data reproducibility class**
+**Welcome to Data Reproducibility class**
 
-2 + 2
+``` r
+2+2
+```
+
+    ## [1] 4
