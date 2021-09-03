@@ -1,7 +1,7 @@
-Hw1 Notebook
+Homework 1
 ================
 
-**Welcome to Data Reproducibility class**
+**Welcome to Data reproducibility class**
 
 ``` r
 2+2

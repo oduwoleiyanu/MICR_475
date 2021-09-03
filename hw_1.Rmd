@@ -1,10 +1,12 @@
 ---
-title: "Hw1 Notebook"
+title: "Homework 1"
 output: github_document
 ---
-**Welcome to Data Reproducibility class**
+
+**Welcome to Data reproducibility class**
 
 ```{r}
 2+2
 ```
+
 
