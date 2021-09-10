@@ -1,4 +1,4 @@
-Hw\_4 Notebook
+HW\_4 Notebook
 ================
 
 ``` r
