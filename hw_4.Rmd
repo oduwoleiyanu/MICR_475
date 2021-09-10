@@ -1,0 +1,29 @@
+---
+title: "Hw_4 Notebook"
+output: github_document
+---
+
+ 
+
+```{r}
+####
+## script for Homework4, sum and scatterplot 
+#####
+library(tidyverse)
+library(nycflights13)
+a <- 3
+b <- 2
+# The sum of a and b
+print(a+b)
+# Using the sum function 
+sum(2+3)
+head(flights)
+#filter AA carrier and convert to data frame
+aa_flights <- filter(flights, carrier == "AA")
+aa_flights <- as.data.frame(aa_flights)
+ggplot(data = aa_flights) +
+  geom_point(mapping = aes(x = dep_delay, y = arr_delay)) # relationship between delay and arriver
+
+```
+
+
