@@ -1,0 +1,70 @@
+---
+title: "Hw_5 Assignment"
+output: github_document
+---
+## Count_cut
+```{r}
+####
+## script for homework5: data wrangling
+library(tidyverse)
+head(diamonds)
+count_cut<- diamonds %>% 
+  group_by(cut) %>%
+  summarise(count = n())
+head (count_cut)
+```
+
+## Sampling for 1% fraction
+```{r}
+#sampling for 1% fraction
+sample_diamond <- sample_frac(diamonds, 0.01)
+head(sample_diamond)
+```
+
+## Largest_diamonds mean
+```{r}
+# largest_diamonds only
+largest_diamond <- diamonds %>%
+  group_by(clarity) %>%
+  slice_max(order_by = carat, n = 100, with_ties = FALSE) %>%
+  summarise(mean_size = mean(carat))
+print(largest_diamond)
+```
+## Scatter plots
+```{r}
+#Scatter plots
+#plots of x and y
+head(diamonds)
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = x, y = y))
+
+#plots of x and z
+
+head(diamonds)
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = x, y = z))
+```
+
+## Filtering strange datapoints
+```{r}
+# filter strange datapoints
+
+diamonds_filter <- diamonds %>% # diamond_filter is the new data_frame
+  filter(x>=3) %>%
+  filter(z>1 & z<30) %>%
+  filter(y>1 & y<30)
+# Plot of x and y
+head(diamonds_filter)
+ggplot(data = diamonds_filter) +
+  geom_point(mapping = aes(x = x, y = y))
+# Plot of x and z
+head(diamonds_filter)
+ggplot(data = diamonds_filter) +
+  geom_point(mapping = aes(x = x, y = z))
+
+
+  
+
+
+```
+
