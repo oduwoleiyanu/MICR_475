@@ -5,7 +5,7 @@ output: github_document
 
  
 
-```{r}
+```{r, warning=FALSE, message= FALSE}
 ####
 ## script for Homework4, sum and scatterplot 
 #####
@@ -17,7 +17,7 @@ b <- 2
 print(a+b)
 # Using the sum function 
 sum(2+3)
-head(flights)
+
 #filter AA carrier and convert to data frame
 aa_flights <- filter(flights, carrier == "AA")
 aa_flights <- as.data.frame(aa_flights)
