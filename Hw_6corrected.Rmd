@@ -16,8 +16,11 @@ b)The visualization chosen for the plot makes comparison between the bars diffic
 c)The  plot does not exhibit multi-variation, it may be hard to estabilish relationships with the whole 20 amino acids of three different categories.
 Suggestion: Breaking down the plots into facets to improve the visualization and understanding of the contents
 
-```{r figure 1, echo=FALSE, fig.cap="Fig 1(Bad  plot)", out.width = '100%'}
-knitr::include_graphics("iyanubadplot.png")
+```{r}
+library(png)
+plot_1 <- readPNG("iyanubadplot.png")
+plot.new()
+rasterImage(plot_1, 0,0,1,1)
 ```
 **Figure 2(good plot)**
 The plot is about comparing mutagenesis and simulations as tools for
@@ -36,8 +39,10 @@ a)The axes are descriptive of the plot content.
 b) The plot exhibits mutli_variation unlike the other plot 
 c) Comparison can easily be done on this graph because it explicity simplifies the overall relationship between each amino acids and thermostability.
 
-```{r figure 2, echo=FALSE, fig.cap="Fig 2 (good plot)", out.width = '100%'}
-knitr::include_graphics("goodplot.png")
+```{r}
+plot_1 <- readPNG("goodplot.png")
+plot.new()
+rasterImage(plot_1, 0,0,1,1)
 
 ```
 

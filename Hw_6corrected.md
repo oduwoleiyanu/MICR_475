@@ -23,18 +23,14 @@ estabilish relationships with the whole 20 amino acids of three
 different categories. Suggestion: Breaking down the plots into facets to
 improve the visualization and understanding of the contents
 
-<div class="figure">
+``` r
+library(png)
+plot_1 <- readPNG("iyanubadplot.png")
+plot.new()
+rasterImage(plot_1, 0,0,1,1)
+```
 
-<img src="iyanubadplot.png" alt="Fig 1(Bad  plot)" width="100%" />
-
-<p class="caption">
-
-Fig 1(Bad plot)
-
-</p>
-
-</div>
-
+![](Hw_6corrected_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 **Figure 2(good plot)** The plot is about comparing mutagenesis and
 simulations as tools for identifying functionally important sequence
 changes for protein thermal adaptation. The x axis the fraction of amino
@@ -60,14 +56,10 @@ Comparison can easily be done on this graph because it explicity
 simplifies the overall relationship between each amino acids and
 thermostability.
 
-<div class="figure">
+``` r
+plot_1 <- readPNG("goodplot.png")
+plot.new()
+rasterImage(plot_1, 0,0,1,1)
+```
 
-<img src="goodplot.png" alt="Fig 2 (good plot)" width="100%" />
-
-<p class="caption">
-
-Fig 2 (good plot)
-
-</p>
-
-</div>
+![](Hw_6corrected_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
