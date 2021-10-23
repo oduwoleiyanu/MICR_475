@@ -1,0 +1,109 @@
+---
+title: "Hw_8 Assignment"
+output: github_document
+---
+
+
+```{r, warning=FALSE, message=FALSE}
+library(modelr)
+library(tidyverse)
+library(broom)
+# make a dataframe  slope relationship of price as a function of weight(carat) for each unique color
+by_color <- diamonds %>%
+  group_by(color)%>%
+  nest()
+
+price_by_carat <- function(df){
+  m <- lm(price~carat, data = df)
+}
+
+by_color <- by_color %>%
+  mutate(fit= map(data, price_by_carat))
+
+
+
+get_slope <- function(fit_obj) {
+  slope <- coef(fit_obj)[2]
+  slope
+}
+
+by_color <- by_color %>%
+  mutate(slope = map_dbl(fit, get_slope))
+
+## arrange slope  in increasing order
+  
+by_color <- by_color %>%
+  arrange(slope) %>%
+  head()
+
+```
+**Question 2**
+
+```{r, warning=FALSE, message=FALSE}
+library(nls2)
+by_runs <- DNase %>%
+  group_by (Run )
+nls_mod <- formula(density ~ beta_1 * sqrt(conc) + beta_0)
+
+
+single_sqrt_model <- nls2(nls_mod, 
+                          data = by_runs, 
+                          start = list(beta_1 = 0.5, beta_0 = 0.1))
+
+summary(single_sqrt_model)
+
+# using the  monod  model
+nls_mod2 <- formula(density ~ conc * dmax / (conc + k))
+
+
+monod_model <- nls2(nls_mod2,
+                    data = by_runs,
+                    start = list(dmax = 2.5, k = 1.25))
+summary(monod_model)
+
+# Make a dataframe of list of columns for the two models
+
+by_run_model <- by_runs %>%
+  nest() %>%
+  mutate(
+    sqrt_mod = map(data, ~nls2(
+      nls_mod,
+      data = .,
+      start =list(beta_1 = 0.5, beta_0 = 0.1)
+      )),
+    
+    monod_mod = map(data, ~nls2(
+      nls_mod2,
+      data = .,
+      start = list(dmax = 2.5, k = 1.25)
+    )),
+    sqrt_aic = map_dbl(sqrt_mod, ~glance(.)$AIC),
+    monod_aic = map_dbl(monod_mod, ~glance(.)$AIC)
+  )
+
+# plotting each run for single sqrt model
+ggplot(by_run_model)+
+  geom_point(aes(x = Run, y = sqrt_aic, color = Run))
+# plotting each run  for monod_model
+ggplot(by_run_model)+
+ geom_point(aes(x = Run, y = monod_aic, color = Run))
+ 
+#Predicting models  
+
+model <-data_frame( x = predict(single_sqrt_model), y = predict(monod_model))
+  
+
+predict_model <- cbind.data.frame(by_runs, model)
+
+
+
+
+ggplot(predict_model, aes(conc, density)) +
+  geom_point() +
+  geom_line(aes(conc, x))+
+  geom_line(aes(conc, y))
+
+
+```
+
+
