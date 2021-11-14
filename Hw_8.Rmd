@@ -16,25 +16,24 @@ by_color <- diamonds %>%
 price_by_carat <- function(df){
   m <- lm(price~carat, data = df)
 }
-
+# Computing the function for each price by carat
 by_color <- by_color %>%
   mutate(fit= map(data, price_by_carat))
 
 
-
+# getting the slope for the regression
 get_slope <- function(fit_obj) {
   slope <- coef(fit_obj)[2]
   slope
 }
-
+# computing the slope function for eahc price by carat
 by_color <- by_color %>%
   mutate(slope = map_dbl(fit, get_slope))
 
 ## arrange slope  in increasing order
   
-by_color <- by_color %>%
-  arrange(slope) %>%
-  head()
+by_color %>%
+  arrange(slope)
 
 ```
 **Question 2**
